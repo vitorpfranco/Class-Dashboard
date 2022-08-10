@@ -1,16 +1,21 @@
 <div class="form-container">
   <h1>Login</h1>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <mat-form-field>
       <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="email?.errors?.['required']">Campo obrigatório</mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">Digite um email válido</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="Password" formControlName="password" type="password">
+      <mat-error *ngIf="password?.errors?.['required']">Campo obrigatório</mat-error>
+
     </mat-form-field>
     <div class="center margin-top">
       <button mat-raised-button color="primary" type="submit">Login</button>
     </div>
 
-    <span class="center margin-top">Novo na plataforma? <a routerLink="sing-up"> Registrar!</a></span>
+    <span class="center margin-top">Novo na plataforma? <a class="sign-up-link" routerLink="/registrar">
+        Registrar!</a></span>
   </form>
 </div>

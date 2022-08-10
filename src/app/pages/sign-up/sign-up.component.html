@@ -1,1 +1,34 @@
-<p>sign-up works!</p>
+<div class="form-container">
+  <h1>Registro</h1>
+  <form [formGroup]="signUpForm" (ngSubmit)="register()">
+    <mat-form-field>
+      <input matInput placeholder="Nome" formControlName="name">
+      <mat-error *ngIf="name?.errors?.['required']">Campo obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="email?.errors?.['required']">Campo obrigatório</mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">Digite um email válido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Senha" formControlName="password" type="password">
+      <mat-error *ngIf="password?.errors?.['required']">Campo obrigatório</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input matInput placeholder="Confirme a senha" formControlName="confirmPassword" type="password">
+      <mat-error *ngIf="password?.errors?.['required']">Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="signUpForm?.errors?.['passwordsDontMatch']">As senhas devem ser iguais</mat-error>
+
+    <div class="center margin-top">
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </div>
+
+    <span class="center margin-top">Novo na plataforma? <a class="sign-up-link" routerLink="/sign-up">
+        Registrar</a></span>
+  </form>
+</div>
